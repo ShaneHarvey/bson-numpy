@@ -3,11 +3,16 @@ language: python
 # cache artifacts for faster builds
 cache: pip
 
+os:
+  - linux
+  - windows
+
 # build matrix
 python:
   - "3.5"
   - "3.6"
   - "3.7"
+  - "3.8"
 
 # build matrix
 env:
@@ -23,8 +28,10 @@ branches:
   only:
   - master
 
-before_install:
-  - sudo apt-get install gcc
+addons:
+  apt:
+    packages:
+      - gcc
 
 install:
   - wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${MONGODB}.tgz -O /tmp/mongodb.tgz
